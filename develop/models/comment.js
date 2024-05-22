@@ -6,19 +6,38 @@ class Comment extends Model {}
 Comment.init(
     {
         id: {
-
+            type: DataTypes.INTEGER,
+            allowNull: false,
+            primaryKey: true,
+            autoIncrement: true,
         },
-        username: {
-
+        content: {
+            type: DataTypes.TEXT,
+            allowNull: false,
         },
-        email: {
-
+        blogPostId: {
+            type: DataTypes.INTEGER,
+            references: {
+                model: 'user',
+                key: 'id',
+            }
         },
-        password: {
-            
-        }
-
+        userId: {
+            type: DataTypes.INTEGER,
+            references: {
+                model: 'post',
+                key: 'id',
+            },   
+        },
+    },
+    {
+        sequalize,
+        timestamps: false,
+        freezeTableName: true,
+        underscored: true,
+        modelName: 'comment'
     }
-)
+);
+
 
 module.exports = Comment
