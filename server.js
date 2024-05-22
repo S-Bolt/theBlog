@@ -5,6 +5,7 @@ const routes = require('./develop/controllers');
 const sequelize = require('./develop/config/connection');
 const SequelizeStore = require('connect-session-sequelize')(session.Store);
 
+
 const app = express();
 const port = process.env.PORT || 3001;
 
@@ -14,7 +15,7 @@ const port = process.env.PORT || 3001;
 //Set session and conntect to Sequelize
 
 const sess = {
-    secret: 'secret',
+    secret: 'topSecret',
     cookie: {
         maxAge: 24 * 60 * 60 * 1000,
     },
