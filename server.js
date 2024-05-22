@@ -6,7 +6,7 @@ const sequelize = require('./develop/config/connection');
 const SequelizeStore = require('connect-session-sequelize')(session.Store);
 
 const app = express();
-const port = process.env.Port || 3001;
+const port = process.env.PORT || 3001;
 
 //Handlebars.js w/ helper
 //const hbs = exphbs.create({ helpers });
@@ -20,15 +20,26 @@ const sess = {
     },
     resave: false,
     saveUninitialized: true,
-    Store: new SequelizeStore({
+    store: new SequelizeStore({
         db: sequelize,
     }),
 };
 
 app.use(session(sess));
 
-// active handlebars engine and set it as default
+// activate handlebars engine and set it as default
 app.engine('handlebars', hbs.engine);
 app.set('view engine', 'handlebars');
 
+//express middleware
+app.use(express.json());
+app.use(express.urlencoded({ extended: true}));
+app.use(express.static('./develop/public'));
+
+app.use(routes);
+
+//sync sequalize models and start server
+sequelize.sync({ force: false }).then(() => {
+    app.listen(PORT, () => console.log('Now listening on port ${PORT}'))
+});
 
