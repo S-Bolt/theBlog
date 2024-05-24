@@ -1,0 +1,17 @@
+<div class="posts">
+    {{if posts.length}}
+
+    <ul>
+        {{#each posts}}
+         <li>
+            <h2>{{title}}</h2>
+            <p>{{content}}</p>
+         </li>
+         {{/each}}
+    </ul>
+   
+
+    {{else}}
+        <p>No post found!</p>
+    {{/if}}    
+</div>
