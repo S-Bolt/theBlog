@@ -1,0 +1,17 @@
+[
+    {
+        "title": "The first blog",
+        "content": "Today in blog worthy news we are trying to figure out how to build this project",
+        "userId": 1
+    },
+    {
+        "title": "The next blog",
+        "content": "Learning how to incorportate Handlebars into a project can be a dauting task at first",
+        "userId": 2
+    },
+    {
+        "title": "The next next blog",
+        "content": "Eventaully, I'm going to figure out how to make this work!",
+        "userId": 3
+    }
+]
