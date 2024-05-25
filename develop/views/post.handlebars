@@ -13,7 +13,8 @@
             <h3>Leave a comment</h3>
         </div>
         <form id="new-comment-form">
-             <textarea name="comment-text" rows="3" placeholder="Write comment here"></textarea>
+             <input type="hidden" id="post-id" name="post-id" value="{{id}}">
+             <textarea id="'comment-text" name="comment-text" rows="3" placeholder="Write comment here"></textarea>
              <button type="submit" class="btn">Submit Comment</button>
         </form>
     </div>

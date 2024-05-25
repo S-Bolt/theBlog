@@ -3,7 +3,7 @@ const router = require('express').Router();
 const { userInfo } = require('os');
 const { Comment, BlogPost, User } = require('../models');
 const withAuth = require('../utils/auth');
-//need to write this file
+
 //Get all post and render to home.handlbars
 router.get('/', async (req, res) => {
     try{
