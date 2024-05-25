@@ -1,3 +1,4 @@
+//function to handle new comments
 const newCommentHandler = async (event) => {
     event.preventDefault();
 
