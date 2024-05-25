@@ -1,0 +1,32 @@
+<div class="post-container">
+    <!-- rendering post data-->
+    <h1>{{title}}</h1>
+    <div class="post-content">
+        <p>{{content}}</p>
+        <p>by {{user.username}}</p>   
+    </div>
+    
+    <!-- if logged in present comment ability -->
+    {{#if logged_in}}
+    <div class="leave-comment">
+        <div class="comment-header"> 
+            <h3>Leave a comment</h3>
+        </div>
+        <form id="new-comment-form">
+             <textarea name="comment-text" rows="3" placeholder="Write comment here"></textarea>
+             <button type="submit" class="btn">Submit Comment</button>
+        </form>
+    </div>
+    {{/if}}
+
+    <!-- show comments if there are any -->
+    {{#if comments.length}}
+        <ul>
+            {{#each comments as |comment|}}
+            {{> comments}}
+            {{/each}}
+        </ul>
+
+    {{/if}}
+
+</div>
