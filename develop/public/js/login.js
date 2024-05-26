@@ -17,7 +17,7 @@ const loginHandler = async (event) => {
             //sending user  to dashboard page
             document.location.replace('/dashboard');
         }else {
-            console.error('Login failed:', errorData); // Debugging line
+            console.error('Login failed:', response.statusText); // Debugging line
             alert('Login failed: Try again!');
         }
     }
@@ -48,5 +48,5 @@ const signupHandler = async (event) => {
 
 //Event listeners for each function
 document.querySelector('.login-form').addEventListener('submit', loginHandler);
-document.querySelector('.signup-from').addEventListener('submit', signupHandler);
+document.querySelector('.signup-formm').addEventListener('submit', signupHandler);
 });
