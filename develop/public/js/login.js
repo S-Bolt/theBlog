@@ -1,12 +1,13 @@
+document.addEventListener('DOMContentLoaded', () => {
 //Login function
 const loginHandler = async (event) => {
     event.preventDefault();
 
     const email = document.querySelector('#login-email').value.trim();
     const password = document.querySelector('#login-password').value.trim();
-
+    console.log('Login attempt:', { email, password }); // Debugging line
     if (email && password) {
-        const response = await fetch('api/users/login', {
+        const response = await fetch('/api/users/login', {
             method: 'POST',
             body: JSON.stringify({ email, password}),
             headers: {'Content-Type': 'application/json'},
@@ -16,6 +17,7 @@ const loginHandler = async (event) => {
             //sending user  to dashboard page
             document.location.replace('/dashboard');
         }else {
+            console.error('Login failed:', errorData); // Debugging line
             alert('Login failed: Try again!');
         }
     }
@@ -30,7 +32,7 @@ const signupHandler = async (event) => {
     const password = document.querySelector('#signup-password').value.trim();
 
     if (name && email && password) {
-        const response = await fetch('api/users/signup', {
+        const response = await fetch('/api/users/signup', {
             method: 'POST',
             body: JSON.stringify({ name, email, password}),
             headers: { 'Content-Type': 'application/json'},
@@ -45,5 +47,6 @@ const signupHandler = async (event) => {
 };
 
 //Event listeners for each function
-document.querySelector('#login-form').addEventListener('submit', loginHandler);
-document.querySelector('#signup-from').addEventListener('submit', signupHandler);
+document.querySelector('.login-form').addEventListener('submit', loginHandler);
+document.querySelector('.signup-from').addEventListener('submit', signupHandler);
+});

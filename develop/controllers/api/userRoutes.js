@@ -15,9 +15,9 @@ router.post('/signup', async (req, res) => {
         req.session.save(() => {
             req.session.userId = newUser.id;
             req.session.username = newUser.username;
-            req.session.loggedIn = true;
+            req.session.logged_in = true;
 
-            res.json({ username: newUser.username, message: 'You are now registred!'});
+            res.json({ username: newUser.username, message: 'You are now registered!'});
         });
 
     }catch (err) {
@@ -27,36 +27,51 @@ router.post('/signup', async (req, res) => {
 //Login route
 router.post('/login', async (req, res) =>{
     try {
-        const userData = await User.findOne({ where: { email: req.body.email}});
+        const { email, password } = req.body;
+
+        console.log('Email:', email);
+        console.log('Passwords:', password);
+
+        const userData = await User.findOne({ 
+            where: { email }
+        });
+        console.log(userData)
 
         if (!userData) {
-            res.status.apply(400).json({ message: 'Incorrect email or password, try again.'})
+            res.status(400).json({ message: 'Incorrect email or password, try again.'})
             return;
         }
         //Verify password
-        const validPassword = await bcrypt.compare(req.body.password, userData.password);
+        const validPassword = await bcrypt.compare(password, userData.password);
 
         if (!validPassword) {
-            res.status(400).json({ message: 'Incorrect email or password, try again.'})
+            res.status(400).json({ message: 'Incorrect email or password, try again.'});
             return;
         }
         //Starting session for loggin in user
         req.session.save(() => {
             req.session.userId = userData.id;
             req.session.username = userData.username;
-            req.sesssion.loggedIn = true;
+            req.session.logged_in = true;
 
             res.json({ user: userData.username, message: 'You are now logged in'});
-        })
+        });
     } catch (err){
+        console.error(err); // Debugging line
         res.status(500).json(err);
     }
 }),
-
-
-
-
 //Logout route
+router.post('/logout', (req, res) => {
+    if (req.session.logged_in) {
+        req.session.destroy(() => {
+            res.status(204).end();
+        });
+    } else {
+        res.status(404).end()
+    }
+});
+
 
 
 

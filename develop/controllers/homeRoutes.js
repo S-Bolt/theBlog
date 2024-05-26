@@ -54,5 +54,15 @@ router.get('/post/:id', async (req, res) => {
     }
 });
 
+//route to login page, if session logged sent to dashboard if not to login.
+router.get('/login', (req, res) => {
+    if (req.session.logged_in) {
+        res.redirect('/dashboard');
+        return;
+    }
+    res.render('login');
+
+});
+
 
 module.exports = router
