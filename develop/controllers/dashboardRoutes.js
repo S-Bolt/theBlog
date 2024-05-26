@@ -1,11 +1,11 @@
 const router = require('express').Router();
-const { Post, User} = require('../models');
+const { User, BlogPost} = require('../models');
 //const { withGuard } = require('../utils/auth');
 
 //Dashboard route
 router.get('/', async (req, res) => {
     try {
-        const postData = await Post.findAll({
+        const postData = await BlogPost.findAll({
             where: {
                 userId: req.session.user_id
             },
