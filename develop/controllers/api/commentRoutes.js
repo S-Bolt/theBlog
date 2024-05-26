@@ -3,8 +3,9 @@ const { Comment } = require('../../models');
 const withAuth = require('../../utils/auth');
 
 //post route for adding comment to specific post
-router.post('/post/:id/comment', withAuth, async (req, res) => {
+router.post('/', withAuth, async (req, res) => {
     try {
+        console.log('Request body:', req.body); // Log the request body for debugging
         const newComment = await Comment.create({
             content: req.body['comment-text'],
             blogPostId: req.params.id,
@@ -12,6 +13,7 @@ router.post('/post/:id/comment', withAuth, async (req, res) => {
         });
         res.status(200).json(newComment);
     } catch (err) {
+        console.error('Error creating comment:', err); // Log the error for debugging
         res.status(500).json(err);
     }
 });
