@@ -8,9 +8,10 @@ router.post('/', withAuth, async (req, res) => {
         console.log('Request body:', req.body); // Log the request body for debugging
         const newComment = await Comment.create({
             content: req.body.content,
-            blogPostId: req.params.id,
+            blogPostId: req.body.postId,
             userId: req.session.user_id,
         });
+        console.log('comment:', newComment)
         res.status(200).json(newComment);
     } catch (err) {
         console.error('Error creating comment:', err); // Log the error for debugging
