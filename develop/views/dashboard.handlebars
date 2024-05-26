@@ -1,0 +1,13 @@
+<main>
+    <h1>Welcome, {{user.username}}</h1>
+
+    <div class="posts-items">
+        {{#each posts}}
+        <a class="items-list" href="/dashboard/edit/{{id}}">
+             <div>{{title}}</div>
+            <div>{{formatDate createdAt}}</div>
+        </a>
+        {{/each}}
+
+    </div>
+</main>
