@@ -2,12 +2,16 @@
     <h1>Welcome, {{user.username}}</h1>
 
     <div class="posts-items">
+        {{#if posts.length}}
         {{#each posts}}
         <a class="items-list" href="/dashboard/edit/{{id}}">
              <div>{{title}}</div>
             <div>{{formatDate createdAt}}</div>
         </a>
         {{/each}}
+        {{else}}
+            <p>You don't have a post history yet.</p>
+        {{/if}}
 
     </div>
 </main>
