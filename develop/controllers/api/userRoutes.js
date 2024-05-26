@@ -13,7 +13,7 @@ router.post('/signup', async (req, res) => {
         });
             //Creating session based on logged in new user
         req.session.save(() => {
-            req.session.userId = newUser.id;
+            req.session.user_id = newUser.id;///user id?
             req.session.username = newUser.username;
             req.session.logged_in = true;
 
