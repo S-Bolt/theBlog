@@ -3,7 +3,7 @@ const Sequelize = require('sequelize');
 require('dotenv').config();
 
 let sequelize;
-
+//Connect to Postgres instance on Render else connect local
 if (process.env.DB_URL) {
   sequelize = new Sequelize(process.env.DB_URL);
 } else {
