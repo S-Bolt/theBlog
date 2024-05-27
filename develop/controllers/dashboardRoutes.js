@@ -41,7 +41,8 @@ router.get('/new', (req, res) => {
     router.get('/edit/:id', async (req, res) => {
         try {
             const post = await BlogPost.findByPk(req.params.id);
-            
+            console.log(post);
+
             if (!post) {
                 res.status(404).json({ message: 'No post found with that Id'})
                 return;
