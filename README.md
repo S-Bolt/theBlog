@@ -32,5 +32,5 @@ theBlog is a full stack appliction that allows users to interact by creating pos
  Participate in the fun here: https://theblog-esgu.onrender.com/
 
 ## License
-This project is licesnsed under the MIT license.
+This project is licensed under the MIT license.
 
