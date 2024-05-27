@@ -23,6 +23,7 @@ document.addEventListener('DOMContentLoaded', () =>{
         }
     };
     const deletePostHandler = async function () {
+        const postId = post.dataValues.id;
         const response = await fetch(`/api/posts/${postId}`, {
             method: 'DELETE',
         });
