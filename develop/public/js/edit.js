@@ -1,6 +1,6 @@
 document.addEventListener('DOMContentLoaded', () =>{
 
-    const editPostForm = async (event => {
+    const editPostForm = async function (event) {
         event.preventDefault();
 
         const title = document.querySelector('#editPost-title').value.trim();
@@ -21,12 +21,20 @@ document.addEventListener('DOMContentLoaded', () =>{
         } else {
             alert('Failed to edit post!');
         }
-    });
-const deletePostHandler = (event) => {
-    event.preventDefault();
+    };
+    const deletePostHandler = async function () {
+        const response = await fetch(`/api/posts/${postId}`, {
+            method: 'DELETE',
+        });
+        if (response.ok) {
+            document.location.replace('/dashboard');
+        } else {
+        alert('Failed to delete');
+    }
 }
+
 
 
 document.querySelector('#save-post').addEventListener('submit', editPostForm);
 document.querySelector('#delete-post').addEventListener('click', deletePostHandler);
-})
+});

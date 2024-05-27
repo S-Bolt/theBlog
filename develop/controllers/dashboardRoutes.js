@@ -37,4 +37,23 @@ router.get('/new', (req, res) => {
     });
 });
 
+    //Get route to render the edit
+    router.get('/edit/:id', async (req, res) => {
+        try {
+            const post = await BlogPost.findByPk(req.params.id);
+            
+            if (!post) {
+                res.status(404).json({ message: 'No post found with that Id'})
+                return;
+            }
+            res.render('editPost',{
+                dashboard: true,
+                post,
+                logged_in: req.session.logged_in,
+            })
+        } catch (err) {
+            res.status(500).json({ error: err.message});
+        }
+});
+
 module.exports = router;
