@@ -5,6 +5,7 @@ const routes = require('./controllers');
 const sequelize = require('./config/connection');
 const SequelizeStore = require('connect-session-sequelize')(session.Store);
 const helpers = require('./utils/helpers');
+const path = require('path');
 
 
 const app = express();
@@ -36,12 +37,12 @@ app.set('view engine', 'handlebars');
 //express middleware
 app.use(express.json());
 app.use(express.urlencoded({ extended: true}));
-app.use(express.static('public'));
+app.use(express.static(path.join(__dirname, 'public')));
 
 app.use(routes);
 
 //sync sequalize models and start server
 sequelize.sync({ force: false }).then(() => {
-    app.listen(PORT, () => console.log('Now listening on port ${PORT}'))
+    app.listen(PORT, () => console.log(`Now listening on port ${PORT}`))
 });
 
