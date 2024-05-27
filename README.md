@@ -28,6 +28,9 @@ theBlog is a full stack appliction that allows users to interact by creating pos
 ## Video Demo
 [Click here to watch the video demo](https://drive.google.com/file/d/1jM608YZaB0nWrgQ_rZTNdzoMR_BeiDeC/view)
 
+## Link to Deployed Application
+ Participate in the fun here: https://theblog-esgu.onrender.com/
+
 ## License
 This project is licesnsed under the MIT license.
 
